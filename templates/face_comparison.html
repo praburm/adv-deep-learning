@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Face Comparison</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #5cb85c;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+
+        h3 {
+            color: #337ab7;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background-color: #fff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+		
+		.result-container {
+            background-color: #e6ffe6; /* Light green for a match */
+            color: #2e8b57; /* Darker green text */
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .result-container.no-match {
+            background-color: #ffe6e6; /* Light red for no match */
+            color: #a94442; /* Darker red text */
+        }
+
+        .result-label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Compare Two Face Images</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="image1">Image 1:</label>
+        <input type="file" id="image1" name="image1" required><br><br>
+        <label for="image2">Image 2:</label>
+        <input type="file" id="image2" name="image2" required><br><br>
+        <button type="submit">Compare</button>
+    </form>
+
+    {% if result %}
+    {% set is_match = 'MATCH' in result %}
+    <div class="result-container {% if not is_match %}no-match{% endif %}">
+        <h3>Comparison Result</h3>
+        <p><span class="result-label">Comparison:</span> {{ result.split('→')[0] }} <span style="font-weight: bold;">→</span> {{ result.split('→')[1].split('(')[0] }}</p>
+        <p><span class="result-label">Status:</span> <span style="font-weight: bold;">{{ 'MATCH' if is_match else 'NO MATCH' }}</span></p>
+        {% if 'Distance' in result %}
+        <p><span class="result-label">Distance:</span> {{ result.split('(')[1][:-1] }}</p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% if stats %}
+    <h3>Comparison Statistics</h3>
+    <table border="1">
+        <tr>
+            <th>Name</th><th>Count</th><th>Min</th><th>Max</th><th>Avg</th>
+        </tr>
+        {% for row in stats %}
+        <tr>
+            <td>{{ row.name }}</td>
+            <td>{{ row.count }}</td>
+            <td>{{ row.min }}</td>
+            <td>{{ row.max }}</td>
+            <td>{{ row.avg }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <a href="/">Back to Home</a>
+</body>
+</html>

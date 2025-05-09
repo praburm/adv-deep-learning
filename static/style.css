@@ -1,0 +1,217 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  color: #fff;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  max-width: 800px;
+  width: 90%;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #00ffd5, #0088ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.video-box img {
+  width: 100%;
+  border-radius: 12px;
+  border: 3px solid #00ffd5;
+  box-shadow: 0 4px 20px rgba(0, 255, 213, 0.3);
+}
+
+input[type="text"],
+input[type="file"] {
+  width: 100%;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="file"]:focus {
+  outline: 2px solid #00ffd5;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+button.btn {
+  background-color: #00ffd5;
+  color: #111;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+button.btn:hover {
+  background-color: #00e0c0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 255, 213, 0.4);
+}
+
+.links {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.links a.btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  min-width: 220px;
+  text-align: center;
+  font-size: 1rem;
+  color: #111 !important;
+  border: 2px solid transparent;
+}
+
+/* Button color styles */
+.links a.btn-register {
+  background-color: #00ffd5;
+}
+
+.links a.btn-upload {
+  background-color: #ff9f43;
+}
+
+.links a.btn-stats {
+  background-color: #8e44ad;
+  color: white !important;
+}
+
+/* Hover effects */
+.links a.btn-register:hover {
+  background-color: #00e0c0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 255, 213, 0.4);
+}
+
+.links a.btn-upload:hover {
+  background-color: #ff8c2b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 159, 67, 0.4);
+}
+
+.links a.btn-stats:hover {
+  background-color: #7d3a98;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(142, 68, 173, 0.4);
+}
+
+/* Button color styles for Face Comparison */
+.links a.btn-face-compar {
+    background-color: #6a5acd; /* Add the desired background color */
+    color: white !important; /* Ensure text color is appropriate */
+}
+
+/* Hover effect for Face Comparison */
+.links a.btn-face-compar:hover {
+    background-color: #5749ad; /* Slightly darker shade for hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(106, 90, 205, 0.4); /* Adjust shadow color */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: 30px 20px;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .links {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .links a.btn {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 25px;
+  color: #00ffd5;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+  transform: translateX(-3px);
+}
+
+.flashes {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 25px 0;
+}
+
+.flashes li {
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-weight: 500;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.flashes .success {
+  background-color: rgba(40, 167, 69, 0.2);
+  border-left: 4px solid #28a745;
+  color: #b5f5c4;
+}
+
+.flashes .error {
+  background-color: rgba(220, 53, 69, 0.2);
+  border-left: 4px solid #dc3545;
+  color: #ffb8c1;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Match Statistics</title>
+    <style>
+        table {
+            width: 70%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #888;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">Face Match Statistics</h1>
+    <p style="text-align:center;">Total Unrecognized Matches: {{ unmatched }}</p>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Match Count</th>
+            <th>Min Distance</th>
+            <th>Max Distance</th>
+            <th>Average Distance</th>
+        </tr>
+        {% for entry in statistics %}
+		<tr style="background-color: {% if entry.name.startswith('Unknown') %}#fce4e4{% else %}#e8f5e9{% endif %};">
+			<td>{{ entry.name }}</td>
+			<td>{{ entry.count }}</td>
+			<td>{{ entry.min }}</td>
+			<td>{{ entry.max }}</td>
+			<td>{{ entry.avg }}</td>
+		</tr>
+		{% endfor %}
+
+    </table>
+</body>
+</html>

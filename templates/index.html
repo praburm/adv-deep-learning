@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prabu KinCheck</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+ <div class="header">
+  <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+  <h1 class="app-title">Face Verification App</h1>
+</div>
+  <div class="container">
+    <div class="video-box">
+      <img src="{{ url_for('video_feed') }}" alt="Live Video Feed">
+    </div>
+
+    <div class="links">
+  <a href="{{ url_for('face_comparison') }}" class="btn btn-face-compar">Face Comparison</a>
+  <a href="{{ url_for('register') }}" class="btn btn-register">Register New Face</a>
+  <a href="{{ url_for('upload_video') }}" class="btn btn-upload">Upload Video</a>
+  <a href="{{ url_for('statistics') }}" class="btn btn-stats">View Match Statistics</a>
+</div>
+
+  </div>
+</body>
+</html>
